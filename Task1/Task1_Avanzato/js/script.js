@@ -104,6 +104,11 @@ function saveEditedTask() {
     }
 }
 
+function searchTasks() {
+    const searchText = document.getElementById('searchInput').value.toLowerCase();
+    renderTasks(searchText);
+}
+
 function getStatusLabel(status) {
     const statusLabels = {
         'to-do': 'Da fare',
@@ -113,17 +118,25 @@ function getStatusLabel(status) {
     return statusLabels[status] || status;
 }
 
-function renderTasks() {
+function renderTasks(searchText = '') {
     const taskList = document.getElementById('taskList');
     const emptyMessage = document.getElementById('emptyMessage');
     taskList.innerHTML = '';
     
-    if (tasks.length === 0) {
+    let filteredTasks = tasks;
+    
+    if (searchText !== '') {
+        filteredTasks = filteredTasks.filter(task => 
+            task.text.toLowerCase().includes(searchText)
+        );
+    }
+    
+    if (filteredTasks.length === 0) {
         emptyMessage.style.display = 'block';
     } else {
         emptyMessage.style.display = 'none';
         
-        tasks.forEach(task => {
+        filteredTasks.forEach(task => {
             const taskItem = document.createElement('li');
             taskItem.classList.add('task-item', task.status);
             
@@ -166,6 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
             addTask();
         }
     });
+    
+    document.getElementById('searchInput').addEventListener('input', searchTasks);
     
     document.querySelector('.close').addEventListener('click', closeEditModal);
     document.getElementById('saveEditBtn').addEventListener('click', saveEditedTask);
