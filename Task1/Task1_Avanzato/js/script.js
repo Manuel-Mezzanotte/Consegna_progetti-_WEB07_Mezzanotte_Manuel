@@ -1,5 +1,6 @@
 let tasks = [];
 let currentEditId = null;
+let currentFilter = 'all';
 
 function showMessage(text, type = 'error') {
     const messageElement = document.getElementById('message');
@@ -104,6 +105,12 @@ function saveEditedTask() {
     }
 }
 
+function filterTasks() {
+    const statusFilter = document.getElementById('statusFilter').value;
+    currentFilter = statusFilter;
+    renderTasks();
+}
+
 function searchTasks() {
     const searchText = document.getElementById('searchInput').value.toLowerCase();
     renderTasks(searchText);
@@ -124,6 +131,10 @@ function renderTasks(searchText = '') {
     taskList.innerHTML = '';
     
     let filteredTasks = tasks;
+    
+    if (currentFilter !== 'all') {
+        filteredTasks = filteredTasks.filter(task => task.status === currentFilter);
+    }
     
     if (searchText !== '') {
         filteredTasks = filteredTasks.filter(task => 
@@ -181,6 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     document.getElementById('searchInput').addEventListener('input', searchTasks);
+    
+    document.getElementById('statusFilter').addEventListener('change', filterTasks);
     
     document.querySelector('.close').addEventListener('click', closeEditModal);
     document.getElementById('saveEditBtn').addEventListener('click', saveEditedTask);

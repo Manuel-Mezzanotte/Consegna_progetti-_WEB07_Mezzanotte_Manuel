@@ -15,9 +15,18 @@
         </div>
         <div id="message" class="message"></div>
         
-        <!-- Aggiungiamo la casella di ricerca -->
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Cerca attività...">
+        <div class="task-controls">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cerca attività...">
+            </div>
+            <div class="filter-container">
+                <select id="statusFilter">
+                    <option value="all">Tutti</option>
+                    <option value="to-do">Da fare</option>
+                    <option value="in-progress">In corso</option>
+                    <option value="completed">Completata</option>
+                </select>
+            </div>
         </div>
         
         <div class="task-list-container">
