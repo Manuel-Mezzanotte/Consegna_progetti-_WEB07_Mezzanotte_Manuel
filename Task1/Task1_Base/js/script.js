@@ -18,6 +18,12 @@ function addTask() {
     }
 }
 
+function deleteTask(taskId) {
+    tasks = tasks.filter(task => task.id !== taskId);
+    
+    renderTasks();
+}
+
 function renderTasks() {
     const taskList = document.getElementById('taskList');
     taskList.innerHTML = '';
@@ -31,10 +37,18 @@ function renderTasks() {
         `;
         taskList.appendChild(taskItem);
     });
+    
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const taskId = parseInt(e.target.getAttribute('data-id'));
+            deleteTask(taskId);
+        });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('addTaskBtn').addEventListener('click', addTask);
+    
     document.getElementById('taskInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             addTask();
