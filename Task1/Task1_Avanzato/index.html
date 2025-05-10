@@ -20,6 +20,24 @@
             <p id="emptyMessage" class="empty-message">Non ci sono attività. Aggiungine una nuova!</p>
         </div>
     </div>
+    
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Modifica Attività</h3>
+            <input type="text" id="editTaskInput">
+            <div class="status-selector">
+                <span>Stato:</span>
+                <select id="editStatusSelect">
+                    <option value="to-do">Da fare</option>
+                    <option value="in-progress">In corso</option>
+                    <option value="completed">Completata</option>
+                </select>
+            </div>
+            <button id="saveEditBtn">Salva</button>
+        </div>
+    </div>
+    
     <script src="js/script.js"></script>
 </body>
 </html>

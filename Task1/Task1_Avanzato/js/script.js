@@ -1,4 +1,5 @@
 let tasks = [];
+let currentEditId = null;
 
 function showMessage(text, type = 'error') {
     const messageElement = document.getElementById('message');
@@ -40,7 +41,7 @@ function addTask() {
         const newTask = {
             id: Date.now(), 
             text: taskText,
-            status: 'to-do' // Nuovo campo status aggiunto
+            status: 'to-do'
         };
         
         tasks.push(newTask);
@@ -60,6 +61,47 @@ function deleteTask(taskId) {
     saveTasks();
     renderTasks();
     showMessage('Attività eliminata con successo!', 'success');
+}
+
+function openEditModal(taskId) {
+    const task = tasks.find(t => t.id === taskId);
+    if (!task) return;
+    
+    currentEditId = taskId;
+    
+    document.getElementById('editTaskInput').value = task.text;
+    document.getElementById('editStatusSelect').value = task.status;
+    
+    document.getElementById('editModal').style.display = 'block';
+}
+
+function closeEditModal() {
+    document.getElementById('editModal').style.display = 'none';
+    currentEditId = null;
+}
+
+function saveEditedTask() {
+    if (currentEditId === null) return;
+    
+    const editedText = document.getElementById('editTaskInput').value.trim();
+    const editedStatus = document.getElementById('editStatusSelect').value;
+    
+    if (editedText === '') {
+        showMessage('Il testo dell\'attività non può essere vuoto');
+        return;
+    }
+    
+    const taskIndex = tasks.findIndex(t => t.id === currentEditId);
+    if (taskIndex !== -1) {
+        tasks[taskIndex].text = editedText;
+        tasks[taskIndex].status = editedStatus;
+        
+        saveTasks();
+        renderTasks();
+        closeEditModal();
+        
+        showMessage('Attività aggiornata con successo!', 'success');
+    }
 }
 
 function getStatusLabel(status) {
@@ -90,9 +132,19 @@ function renderTasks() {
                     <span class="task-text">${task.text}</span>
                     <span class="status-badge status-${task.status}">${getStatusLabel(task.status)}</span>
                 </div>
-                <button class="delete-btn" data-id="${task.id}">Elimina</button>
+                <div class="task-actions">
+                    <button class="edit-btn" data-id="${task.id}">Modifica</button>
+                    <button class="delete-btn" data-id="${task.id}">Elimina</button>
+                </div>
             `;
             taskList.appendChild(taskItem);
+        });
+        
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const taskId = parseInt(e.target.getAttribute('data-id'));
+                openEditModal(taskId);
+            });
         });
         
         document.querySelectorAll('.delete-btn').forEach(button => {
@@ -112,6 +164,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('taskInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             addTask();
+        }
+    });
+    
+    document.querySelector('.close').addEventListener('click', closeEditModal);
+    document.getElementById('saveEditBtn').addEventListener('click', saveEditedTask);
+    
+    window.addEventListener('click', (e) => {
+        const modal = document.getElementById('editModal');
+        if (e.target === modal) {
+            closeEditModal();
         }
     });
     
