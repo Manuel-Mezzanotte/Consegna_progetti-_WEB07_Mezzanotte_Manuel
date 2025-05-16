@@ -16,6 +16,19 @@ function startTimer() {
     }
 }
 
+function stopTimer() {
+    clearInterval(intervalId);
+    intervalId = null;
+}
+
+function resetTimer() {
+    stopTimer();
+    seconds = 0;
+    updateDisplay();
+}
+
 document.getElementById('start').addEventListener('click', startTimer);
+document.getElementById('stop').addEventListener('click', stopTimer);
+document.getElementById('reset').addEventListener('click', resetTimer);
 
 updateDisplay();
