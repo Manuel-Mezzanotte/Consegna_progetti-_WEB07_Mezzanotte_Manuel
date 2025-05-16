@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 3rem auto;
+    max-width: 350px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+#display {
+    font-size: 2.5rem;
+    margin: 1.5rem 0;
+    letter-spacing: 2px;
+}
+
+.buttons button {
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+    margin: 0 0.3rem 0.5rem 0.3rem;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.buttons button:hover {
+    background: #0056b3;
+}
+
+.laps-container {
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.laps-container h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+#lapsList {
+    list-style: decimal inside;
+    padding-left: 0;
+    margin: 0;
+}
+
+#lapsList li {
+    background: #f1f1f1;
+    margin-bottom: 0.3rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 1rem;
+}
