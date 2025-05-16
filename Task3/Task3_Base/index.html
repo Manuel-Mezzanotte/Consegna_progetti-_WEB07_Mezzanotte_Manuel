@@ -9,18 +9,19 @@
 <body>
   <div id="app">
     <div class="weather-card">
-      <h1 class="location">—</h1>
-      <div class="icon">☀️</div>
-      <div class="temp">--°C</div>
-      <div class="details">
-        <span class="humidity">Umidità: --%</span>
-        <span class="wind">Vento: -- km/h</span>
+      <div id="loader">Caricamento…</div>
+      <div id="content" style="display: none;">
+        <h1 class="location">—</h1>
+        <div class="icon">☀️</div>
+        <div class="temp">--°C</div>
+        <div class="details">
+          <span class="humidity">Umidità: --%</span>
+          <span class="wind">Vento: -- km/h</span>
+        </div>
+        <button id="refresh">Aggiorna</button>
       </div>
-      <button id="refresh">Aggiorna</button>
     </div>
   </div>
   <script src="js/script.js"></script>
-</body>
-
 </body>
 </html>

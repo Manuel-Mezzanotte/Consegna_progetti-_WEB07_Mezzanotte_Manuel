@@ -19,6 +19,11 @@ body {
   text-align: center;
 }
 
+#loader {
+  font-size: 1rem;
+  color: #555;
+}
+
 .location {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
@@ -46,4 +51,10 @@ body {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  background-color: #007BFF;
+  color: white;
+}
+
+#refresh:hover {
+  opacity: 0.9;
 }
