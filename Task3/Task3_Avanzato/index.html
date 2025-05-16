@@ -8,6 +8,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+  <div id="controls">
+    <button id="theme-toggle">🌙</button>
+    <button id="info-toggle" title="Informazioni sui codici meteo">ℹ️</button>
+  </div>
   <div id="app">
     <div class="weather-card">
       <div id="loader">Caricamento…</div>
@@ -18,6 +22,7 @@
         <div class="details">
           <span class="humidity">Umidità: --%</span>
           <span class="wind">Vento: -- km/h</span>
+          <span class="weather-description">--</span>
         </div>
         <button id="refresh">Aggiorna</button>
         <div id="hourly-forecast">
@@ -27,10 +32,35 @@
         </div>
         <div id="weekly-forecast">
           <h2 class="section-title">Previsioni Settimanali</h2>
+          <div class="weekly-grid"></div>
         </div>
       </div>
     </div>
   </div>
+
+  <div id="weather-info" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Codici Meteo</h2>
+      <table>
+        <tr><th>Codice</th><th>Descrizione</th><th>Icona</th></tr>
+        <tr><td>0</td><td>Cielo sereno</td><td>☀️</td></tr>
+        <tr><td>1-3</td><td>Prevalentemente sereno, parzialmente nuvoloso, nuvoloso</td><td>⛅️</td></tr>
+        <tr><td>45, 48</td><td>Nebbia e nebbia con brina</td><td>🌫️</td></tr>
+        <tr><td>51, 53, 55</td><td>Pioviggine: leggera, moderata, intensa</td><td>🌧️</td></tr>
+        <tr><td>56, 57</td><td>Pioviggine congelata: leggera, intensa</td><td>❄️🌧️</td></tr>
+        <tr><td>61, 63, 65</td><td>Pioggia: leggera, moderata, forte</td><td>🌧️</td></tr>
+        <tr><td>66, 67</td><td>Pioggia congelata: leggera, forte</td><td>❄️🌧️</td></tr>
+        <tr><td>71, 73, 75</td><td>Nevicata: leggera, moderata, forte</td><td>❄️</td></tr>
+        <tr><td>77</td><td>Granelli di neve</td><td>❄️</td></tr>
+        <tr><td>80, 81, 82</td><td>Rovesci di pioggia: leggeri, moderati, violenti</td><td>🌦️</td></tr>
+        <tr><td>85, 86</td><td>Rovesci di neve leggeri e forti</td><td>🌨️</td></tr>
+        <tr><td>95</td><td>Temporale: leggero o moderato</td><td>⛈️</td></tr>
+        <tr><td>96, 99</td><td>Temporale con grandine leggera e forte</td><td>🌩️</td></tr>
+      </table>
+    </div>
+  </div>
+
   <script src="js/script.js"></script>
 </body>
 </html>
