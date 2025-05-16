@@ -1,0 +1,92 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f0f4f8;
+  font-family: Arial, sans-serif;
+}
+
+#app {
+  width: 300px;
+}
+
+.weather-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.location {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.icon {
+  font-size: 3rem;
+  margin: 0.5rem 0;
+}
+
+.temp {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.details span {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+#refresh {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #007BFF;
+  color: white;
+}
+
+#refresh:hover {
+  opacity: 0.9;
+}
+
+
+
+#loader {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.5rem;
+  text-align: left;
+}
+
+.hourly-list {
+  list-style: none;
+  display: flex;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.hourly-list li {
+  flex: 0 0 auto;
+  margin-right: 1rem;
+  text-align: center;
+}
+
+#temp-chart {
+  margin-top: 1rem;
+  max-width: 100%;
+}
+
+#weekly-forecast {
+  margin-top: 1.5rem;
+  min-height: 50px;
+}
