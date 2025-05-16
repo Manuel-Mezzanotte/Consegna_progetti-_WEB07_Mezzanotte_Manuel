@@ -1,29 +1,35 @@
-let seconds = 0;
+let startTime = null;
+let elapsed = 0;
 let intervalId = null;
 
 function updateDisplay() {
-    const min = String(Math.floor(seconds / 60)).padStart(2, '0');
-    const sec = String(seconds % 60).padStart(2, '0');
-    document.getElementById('display').textContent = `${min}:${sec}`;
+    const totalMs = Math.floor(elapsed);
+    const min = String(Math.floor(totalMs / 60000)).padStart(2, '0');
+    const sec = String(Math.floor((totalMs % 60000) / 1000)).padStart(2, '0');
+    const ms = String(totalMs % 1000).padStart(3, '0');
+    document.getElementById('display').textContent = `${min}:${sec}.${ms}`;
 }
 
 function startTimer() {
     if (!intervalId) {
+        startTime = performance.now() - elapsed;
         intervalId = setInterval(() => {
-            seconds++;
+            elapsed = performance.now() - startTime;
             updateDisplay();
-        }, 1000);
+        }, 10); 
     }
 }
 
 function stopTimer() {
-    clearInterval(intervalId);
-    intervalId = null;
+    if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+    }
 }
 
 function resetTimer() {
     stopTimer();
-    seconds = 0;
+    elapsed = 0;
     updateDisplay();
 }
 
